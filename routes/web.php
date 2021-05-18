@@ -23,3 +23,15 @@ Route::post('/addcategory', 'CategoryController@store');
 Route::get('/editcategory/{category}', 'CategoryController@edit');
 Route::post('/editcategory/{category}', 'CategoryController@update');
 Route::delete('/deletecategory/{category}', 'CategoryController@destroy');
+
+Route::get('/productlist', 'ProductController@index');
+Route::post('/productBycategory', 'ProductController@productbyCategory');
+
+Route::get('/addproduct', 'ProductController@create');
+Route::get('/productlist', 'ProductController@index');
+Route::get('/addproduct', 'ProductController@create');
+Route::post('/addproduct', 'ProductController@store');
+Route::get('/editproduct/{product}','ProductController@edit');
+Route::post('/editproduct/{product}', 'ProductController@update');
+Route::get('/deleteproduct/{product}', 'ProductController@destroy');
+
