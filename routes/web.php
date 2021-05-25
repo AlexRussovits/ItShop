@@ -29,9 +29,16 @@ Route::post('/productBycategory', 'ProductController@productbyCategory');
 
 Route::get('/addproduct', 'ProductController@create');
 Route::get('/productlist', 'ProductController@index');
-Route::get('/addproduct', 'ProductController@create');
+//Route::get('/addproduct', 'ProductController@create');
 Route::post('/addproduct', 'ProductController@store');
 Route::get('/editproduct/{product}','ProductController@edit');
 Route::post('/editproduct/{product}', 'ProductController@update');
 Route::get('/deleteproduct/{product}', 'ProductController@destroy');
+
+Route::get('/adduser', 'UserController@create');
+Route::get('/users', 'UserController@index');
+Route::post('/userByRole', 'UserController@userByRole');
+Route::post('/adduser', 'UserController@store');
+Route::get('/edituser/{user}', 'UserController@edit');
+Route::post('/edituser/{user}', 'UserController@update');
 
