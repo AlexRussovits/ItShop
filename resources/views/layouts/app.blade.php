@@ -44,17 +44,17 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src='{{ asset("images/profile.jpg")}}' class="user-image" alt="User Image">
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">{{Auth::user()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src='{{ asset("images/profile.jpg")}}' class="img-circle" alt="User Image">
-                                <p>Admin</p>
+                                <p>{{Auth::user()->name}}</p>
                             </li>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/profile') }}" class="btn btn-default btn-flat" id="admin_profile">Update</a>
+                                    <a href="{{ url('/profile/' . Auth::user()->id) }}" class="btn btn-default btn-flat" id="admin_profile">Update</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
@@ -77,15 +77,16 @@
                     <img src='{{ asset("images/profile.jpg")}}' class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Admin</p>
+                    <p>{{Auth::user()->name}}</p>
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">REPORTS</li>
-                <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
-                <li class="header">MANAGE</li>
+                <li class="header">MANAGE
+                @if(Gate::allows('isAdmin') || Gate::allows('isManager'))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-barcode"></i>
@@ -99,7 +100,10 @@
                         <li><a href="{{ url('/productlist') }}"><i class="fa fa-circle-o"></i> Product list</a></li>
                     </ul>
                 </li>
+                @endif
+                @if(Gate::allows('isAdmin'))
                 <li><a href="{{ url('/users') }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                @endif
             </ul>
         </section>
         <!-- /.sidebar -->
